@@ -70,7 +70,7 @@ let submit = () => {
 					const project = new ci.Project({
 						appid: appid,
 						type: 'miniProgram',
-						projectPath: path.join(currentPath, 'unpackage/dist/build/mp-weixin/d43qjg5'),
+						projectPath: path.join(currentPath, 'unpackage/dist/build/mp-weixin/'),
 						privateKeyPath: keyPath,
 						ignores: []
 					})
