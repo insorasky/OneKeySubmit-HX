@@ -14,7 +14,8 @@
 	"main": "./dist/extension",
 	"activationEvents": [
 		"onCommand:in.sorasky.hx.onekeysubmit.submit",
-		"onCommand:in.sorasky.hx.onekeysubmit.showConfig"
+		"onCommand:in.sorasky.hx.onekeysubmit.showConfig",
+		"workspaceContains:manifest.json"
 	],
 	"contributes": {
 		"commands": [

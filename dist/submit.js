@@ -9,9 +9,7 @@ let submit = () => {
 	hx.window.getActiveTextEditor().then(editor => {
 		let channel = hx.window.createOutputChannel('提交微信小程序')
 		channel.show()
-		let currentPath = editor.document.workspaceFolder.uri.path
-		let cfgPath = path.join(currentPath, 'manifest.json')
-		let cfg = JSON.parse(fs.readFileSync(cfgPath))
+		let currentPath = editor.document.workspaceFolder.uri.fsPath		let cfgPath = path.join(currentPath, 'manifest.json')		let cfgData = fs.readFileSync(cfgPath, {			encoding: 'utf-8'		}).replace(/\/\*.*\*\//g, "")		console.log(cfgData)		let cfg = JSON.parse(cfgData)
 		if(!cfg['mp-weixin']['appid']){
 			channel.appendLine('请先在manifest.json中设置AppID！')
 			return

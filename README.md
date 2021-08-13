@@ -11,6 +11,9 @@ HBuilderX Uni-App微信小程序一键提交
 - 3.在插件目录下执行`npm install`安装依赖；
 - 4.重启HBuilderX；
 
+### 食用条件
+- 1.HBuilderX 2.7.0以上
+
 ### 食用方法
 - 1.使用HBuilderX打开Uni-App项目；
 - 2.首次使用时，请点击发行——一键提交设置，设置插件；可参考[微信官方文档](https://developers.weixin.qq.com/miniprogram/dev/devtools/ci.html)；
