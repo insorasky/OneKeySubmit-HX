@@ -1,6 +1,10 @@
 # OneKeySubmit
 HBuilderX Uni-App微信小程序一键提交
 
+### 优势
+- 1.一键快速提交，无需启动繁杂沉重的微信开发者工具；
+- 2.直接使用manifest.json中的版本号，便于版本管理。
+
 ### 安装方法
 - 1.进入HBuilderX的`plugins`目录；
 - 2.将插件文件夹解压至此目录；
