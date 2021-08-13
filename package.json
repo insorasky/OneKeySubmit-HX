@@ -1,0 +1,55 @@
+{
+	"name": "OneKeySubmit",
+	"id": "in.sorasky.hx.onekeysubmit",
+	"description": "HBuilder X 微信小程序一键提交工具",
+	"displayName": "微信小程序提交",
+	"version": "1.0.0",
+	"publisher": "Sora",
+	"engines": {
+		"HBuilderX": "^2.7.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./dist/extension",
+	"activationEvents": [
+		"onCommand:in.sorasky.hx.onekeysubmit.submit",
+		"onCommand:in.sorasky.hx.onekeysubmit.showConfig"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "in.sorasky.hx.onekeysubmit.submit",
+				"title": "向微信提交小程序"
+			},
+			{
+				"command": "in.sorasky.hx.onekeysubmit.showConfig",
+				"title": "一键提交设置"
+			}
+		],
+		"menus": {
+			"menubar/publish": [
+				{
+					"group": "0_foot",
+					"when": "workspaceFolder.type == 'UniApp_Vue'"
+				},
+				{
+					"command": "in.sorasky.hx.onekeysubmit.submit",
+					"group": "0_foot",
+					"when": "workspaceFolder.type == 'UniApp_Vue'"
+				},
+				{
+					"command": "in.sorasky.hx.onekeysubmit.showConfig",
+					"group": "0_foot",
+					"when": "workspaceFolder.type == 'UniApp_Vue'"
+				}
+			]
+		}
+	},
+	"extensionDependencies": [
+		"plugin-manager"
+	],
+	"dependencies": {
+		"miniprogram-ci": "^1.4.13"
+	}
+}
