@@ -9,18 +9,26 @@ let submit = () => {
 	hx.window.getActiveTextEditor().then(editor => {
 		let channel = hx.window.createOutputChannel('提交微信小程序')
 		channel.show()
-		let currentPath = editor.document.workspaceFolder.uri.fsPath		let cfgPath = path.join(currentPath, 'manifest.json')		let cfgData = fs.readFileSync(cfgPath, {			encoding: 'utf-8'		}).replace(/\/\*.*\*\//g, "")		console.log(cfgData)		let cfg = JSON.parse(cfgData)
+		let currentPath = editor.document.workspaceFolder.uri.fsPath
+		let cfgPath = path.join(currentPath, 'manifest.json')
+		let cfgData = fs.readFileSync(cfgPath, {
+			encoding: 'utf-8',
+		}).replace(/\/\*.*\*\//g, "")
+		console.log(cfgData)
+		let cfg = JSON.parse(cfgData)
 		if(!cfg['mp-weixin']['appid']){
 			channel.appendLine('请先在manifest.json中设置AppID！')
-			return
+				return
 		}
 		let appid = cfg['mp-weixin']['appid']
 		let version = cfg['versionName']
 		let keyPath = path.join(currentPath, 'private.' + appid + '.key')
 		if(!fs.existsSync(keyPath)){
-			channel.appendLine('请先在小程序后台——开发管理——开发设置中下载小程序代码上传密钥后，命名为【private.（AppID）.key】（即下载后无需改名）置于项目根目录下！')
+			channel.appendLine(`请先在小程序后台——开发管理——开发设置中下载小程序代码上传密钥后，命名为【private.${appid}.key】（即下载后无需改名）置于项目根目录下！`)
 			return
 		}
+		channel.appendLine(`当前提交版本：${version}；如果版本有误，请修改manifest.json中的版本号；`)
+		channel.appendLine(`当前机器人编号：${usercfg.cfg.robot}；如果编号有误，请修改配置文件；`)
 		var description = ''
 		hx.window.showInputBox({
 			prompt: '请输入当前版本描述',
@@ -28,7 +36,6 @@ let submit = () => {
 		}).then((result) => {
 			if(result == '') description = '于 ' + new Date().format("yyyy-MM-dd hh:mm:ss") + ' 提交'
 			else description = result
-			channel.appendLine('当前提交版本：' + version + '；如果版本有误，请修改manifest.json中的版本号；')
 			channel.appendLine('版本描述：' + description)
 			let hxRoot = path.resolve(process.execPath, '../..')
 			var myEnv = process.env
